@@ -1,0 +1,18 @@
+name: Test Action
+on: [push]
+
+jobs:
+  get-num-square:
+    runs-on: ubuntu-latest
+    name: Returns the number square
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Fetch num sqaured
+        id: get_square
+        uses: ./ # Uses an action in the root directory
+        # or use a released Gitub Action
+        with:
+          num: 11
+      - name: Print the square
+        run: echo "${{ steps.get_sqaure.outputs.num_squared }}"
